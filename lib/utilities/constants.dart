@@ -24,3 +24,17 @@ const kTextStyleLightGreen = TextStyle(
 const kTextStyleBrightWhite = TextStyle(
   color: Colors.white,
 );
+
+const kTextFieldInputDecoration = InputDecoration(
+  filled: true,
+  fillColor: kLightAccentColorPink,
+  icon: Icon(Icons.add),
+  hintText: 'Add text',
+  hintStyle: kTextStyleDark,
+  border: OutlineInputBorder(
+    borderRadius: BorderRadius.all(
+      Radius.circular(10.0),
+    ),
+    borderSide: BorderSide.none,
+  ),
+);

@@ -1,6 +1,7 @@
+import 'package:checksonme_merchant/services/login_register.dart';
 import 'package:checksonme_merchant/utilities/constants.dart';
 import 'package:flutter/material.dart';
-import '../utilities/input_decorations.dart';
+import '../components/input_button.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -8,6 +9,9 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
+  String email;
+  String password;
+
   @override
   void initState() {
     super.initState();
@@ -23,55 +27,64 @@ class _LoadingScreenState extends State<LoadingScreen> {
           style: kTextStyleLightPink,
         ),
       ),
-      body: Container(
-        color: kDarkBackgroundColor,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Image.asset(
-              'assets/images/beerpour300sq.gif',
-              fit: BoxFit.contain,
-            ),
-            Text(
-              'Please wait... pouring in progress',
-              textAlign: TextAlign.center,
-              style: kTextStyleLightPink,
-            ),
-            Container(
-              padding: EdgeInsets.all(20.0),
-              child: TextField(
-                style: kTextStyleDark,
-                decoration: kTextFieldInputDecoration(
-                  'username',
-                  Icon(Icons.login_rounded, color: kLightAccentColorPink),
+      body: SingleChildScrollView(
+        child: Container(
+          color: kDarkBackgroundColor,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Image.asset(
+                'assets/images/beerpour300sq.gif',
+                fit: BoxFit.contain,
+              ),
+              Text(
+                'Please wait... pouring in progress',
+                textAlign: TextAlign.center,
+                style: kTextStyleLightPink,
+              ),
+              Container(
+                padding: EdgeInsets.all(20.0),
+                child: TextField(
+                  textAlign: TextAlign.center,
+                  style: kTextStyleDark,
+                  decoration: kTextFieldInputDecoration.copyWith(
+                    hintText: 'email',
+                    icon:
+                        Icon(Icons.login_rounded, color: kLightAccentColorPink),
+                  ),
+                  onChanged: (value) {
+                    email = value;
+                  },
                 ),
-                onChanged: (value) {},
               ),
-            ),
-            Container(
-              padding: EdgeInsets.all(20.0),
-              child: TextField(
-                style: kTextStyleDark,
-                decoration: kTextFieldInputDecoration(
-                  'password',
-                  Icon(Icons.lock_rounded, color: kLightAccentColorPink),
+              Container(
+                padding: EdgeInsets.all(20.0),
+                child: TextField(
+                  obscureText: true,
+                  textAlign: TextAlign.center,
+                  style: kTextStyleDark,
+                  decoration: kTextFieldInputDecoration.copyWith(
+                    hintText: 'password',
+                    icon:
+                        Icon(Icons.lock_rounded, color: kLightAccentColorPink),
+                  ),
+                  onChanged: (value) {
+                    password = value;
+                  },
                 ),
-                onChanged: (value) {},
               ),
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text(
-                'Login',
-                style: kTextStyleBrightWhite,
+              InputButton(
+                text: 'Login or Register',
+                onPressed: () {
+                  final session =
+                      LoginOrRegister(email: email, password: password);
+                  session.login();
+                  print('last step');
+                },
               ),
-              style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all(kDarkAccentColorGreen),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
