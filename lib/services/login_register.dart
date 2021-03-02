@@ -17,7 +17,7 @@ class LoginOrRegister {
       );
       if (user != null) {
         print(user);
-        print('SUCCESSSSSSS');
+        print('SUCCESSSSSSSful login');
         //here is where we add in the Navigator when second page is ready
       }
     } catch (e) {
@@ -38,6 +38,7 @@ class LoginOrRegister {
       );
       if (newUser != null) {
         print(newUser);
+        print('SUCCCCEEESSSSSSSful registration and login')
         //here is where we add Navigator to second page
       }
     } catch (e) {
