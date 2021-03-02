@@ -23,6 +23,9 @@ class ChecksonMeMerchant extends StatelessWidget {
         scaffoldBackgroundColor: kPrimaryColorGreen,
       ),
       home: LoadingScreen(),
+
+      //TODO #1: CREATE NEXT SCREEN
+      //TODO #2: ENTER ROUTES
     );
   }
 }

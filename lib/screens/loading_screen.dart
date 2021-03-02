@@ -11,6 +11,8 @@ class LoadingScreen extends StatefulWidget {
 class _LoadingScreenState extends State<LoadingScreen> {
   String email;
   String password;
+//TODO #3: Can we do conditional rendering of login? OR auto redirect
+//TODO # 5: Have 'please wait' message change based on status
 
   @override
   void initState() {
