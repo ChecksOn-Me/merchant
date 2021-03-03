@@ -27,9 +27,6 @@ class ChecksonMeMerchant extends StatelessWidget {
         routes: {
           LoadingScreen.id: (context) => LoadingScreen(),
           NewChargeScreen.id: (context) => NewChargeScreen(),
-        }
-        //TODO #1: CREATE NEXT SCREEN
-        //TODO #2: ENTER ROUTES
-        );
+        });
   }
 }

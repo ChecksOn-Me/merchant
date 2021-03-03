@@ -38,3 +38,5 @@ const kTextFieldInputDecoration = InputDecoration(
     borderSide: BorderSide.none,
   ),
 );
+
+const double kNumPadding = 15.0;
