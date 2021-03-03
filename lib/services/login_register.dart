@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../screens/new_charge.dart';
 
 class LoginOrRegister {
-  LoginOrRegister({@required this.email, @required this.password});
-
+  LoginOrRegister(
+      {@required this.email, @required this.password, @required this.context});
+  dynamic context;
   final _auth = FirebaseAuth.instance;
   static String message = 'logging in...';
   final String email;
@@ -18,6 +20,7 @@ class LoginOrRegister {
       if (user != null) {
         print(user);
         print('SUCCESSSSSSSful login');
+        Navigator.pushNamed(context, NewChargeScreen.id);
         //here is where we add in the Navigator when second page is ready
       }
     } catch (e) {

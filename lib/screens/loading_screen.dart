@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import '../components/input_button.dart';
 
 class LoadingScreen extends StatefulWidget {
+  static const String id = 'loading';
+
   @override
   _LoadingScreenState createState() => _LoadingScreenState();
 }
@@ -79,8 +81,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
               InputButton(
                 text: 'Login or Register',
                 onPressed: () {
-                  final session =
-                      LoginOrRegister(email: email, password: password);
+                  final session = LoginOrRegister(
+                    email: email,
+                    password: password,
+                    context: context,
+                  );
                   session.login();
                   print('last step');
                 },
