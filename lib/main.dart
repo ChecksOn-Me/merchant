@@ -3,6 +3,7 @@ import 'package:checksonme_merchant/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'screens/new_charge.dart';
+import 'screens/home_screen.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,6 +28,7 @@ class ChecksonMeMerchant extends StatelessWidget {
         routes: {
           LoadingScreen.id: (context) => LoadingScreen(),
           NewChargeScreen.id: (context) => NewChargeScreen(),
+          HomeScreen.id: (context) => HomeScreen(),
         });
   }
 }

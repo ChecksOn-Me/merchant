@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import '../utilities/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../components/number_button.dart';
+import '../screens/home_screen.dart';
 
 class NewChargeScreen extends StatefulWidget {
   static const String id = 'new_charge';
@@ -13,6 +13,7 @@ class NewChargeScreen extends StatefulWidget {
   @override
   _NewChargeScreenState createState() => _NewChargeScreenState();
 }
+//TODO: #6 Figure out a way to limit input to two decimals
 
 class _NewChargeScreenState extends State<NewChargeScreen> {
   final _firestore = FirebaseFirestore.instance;
@@ -48,10 +49,15 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: kDarkBackgroundColor,
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.home),
+              onPressed: () {
+                Navigator.pushNamed(context, HomeScreen.id);
+              }),
+        ],
         title: Text(
           'ChecksOn.Me - NEW CHARGE',
-          style: kTextStyleLightPink,
         ),
       ),
       body: SingleChildScrollView(
@@ -59,7 +65,7 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
           children: [
             Container(
               alignment: Alignment.center,
-              height: 45.0,
+              height: 55.0,
               width: 200.0,
               color: Colors.white,
               child: _amountEntered.isEmpty
@@ -197,35 +203,6 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-            backgroundColor: Colors.red,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
-            backgroundColor: Colors.green,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
-            backgroundColor: Colors.purple,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-            backgroundColor: Colors.pink,
-          ),
-        ],
-        currentIndex: 1,
-        selectedItemColor: kLightAccentColorPink,
-        onTap: (oopsie) {
-          print(oopsie);
-        },
       ),
     );
   }
