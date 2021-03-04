@@ -1,3 +1,4 @@
+import 'package:checksonme_merchant/components/input_button.dart';
 import 'package:checksonme_merchant/screens/loading_screen.dart';
 import 'package:flutter/material.dart';
 import '../utilities/constants.dart';
@@ -56,6 +57,21 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            Container(
+              alignment: Alignment.center,
+              height: 45.0,
+              width: 200.0,
+              color: Colors.white,
+              child: _amountEntered.isEmpty
+                  ? Text(
+                      '\$0.00',
+                      style: TextStyle(fontSize: 35.0),
+                    )
+                  : Text(
+                      '\$${_amountEntered.join('')}',
+                      style: TextStyle(fontSize: 35.0),
+                    ),
+            ),
             Padding(
               padding: const EdgeInsets.all(kNumPadding),
               child: Row(
@@ -148,31 +164,68 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
                     },
                   ),
                   NumberButton(
-                    number: '#',
+                    number: '<',
                     onPressed: () {
-                      updateNum('#');
+                      setState(() {
+                        _amountEntered.removeLast();
+                      });
                     },
                   ),
                 ],
               ),
             ),
-            Container(
-              alignment: Alignment.center,
-              height: 45.0,
-              width: 200.0,
-              color: Colors.white,
-              child: _amountEntered.isEmpty
-                  ? Text(
-                      '\$0.00',
-                      style: TextStyle(fontSize: 35.0),
-                    )
-                  : Text(
-                      '\$${_amountEntered.join('')}',
-                      style: TextStyle(fontSize: 35.0),
-                    ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: InputButton(
+                    text: 'Charge \n Tab',
+                    onPressed: () {},
+                    height: 100.0,
+                    width: 125.0,
+                  ),
+                ),
+                Expanded(
+                  child: InputButton(
+                    text: 'New \n Charge',
+                    onPressed: () {},
+                    height: 100.0,
+                    width: 125.0,
+                  ),
+                ),
+              ],
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+            backgroundColor: Colors.red,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.business),
+            label: 'Business',
+            backgroundColor: Colors.green,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'School',
+            backgroundColor: Colors.purple,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+            backgroundColor: Colors.pink,
+          ),
+        ],
+        currentIndex: 1,
+        selectedItemColor: kLightAccentColorPink,
+        onTap: (oopsie) {
+          print(oopsie);
+        },
       ),
     );
   }
