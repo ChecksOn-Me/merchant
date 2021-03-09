@@ -87,7 +87,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
                     context: context,
                   );
                   session.login();
-                  print('last step');
                 },
               ),
             ],

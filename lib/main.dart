@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'screens/new_charge.dart';
 import 'screens/home_screen.dart';
+import 'package:provider/provider.dart';
+import './models/charge_data.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,21 +16,24 @@ Future main() async {
 class ChecksonMeMerchant extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'ChecksOn.Me - For Merchants',
-        theme: ThemeData(
-          primaryColor: kPrimaryColorGreen,
-          primaryColorLight: kLightAccentColorGreen,
-          primaryColorDark: kDarkAccentColorGreen,
-          accentColor: kDarkAccentColorPink,
-          highlightColor: kLightAccentColorPink,
-          scaffoldBackgroundColor: kPrimaryColorGreen,
-        ),
-        initialRoute: LoadingScreen.id,
-        routes: {
-          LoadingScreen.id: (context) => LoadingScreen(),
-          NewChargeScreen.id: (context) => NewChargeScreen(),
-          HomeScreen.id: (context) => HomeScreen(),
-        });
+    return ChangeNotifierProvider(
+      create: (context) => ChargeData(),
+      child: MaterialApp(
+          title: 'ChecksOn.Me - For Merchants',
+          theme: ThemeData(
+            primaryColor: kPrimaryColorGreen,
+            primaryColorLight: kLightAccentColorGreen,
+            primaryColorDark: kDarkAccentColorGreen,
+            accentColor: kDarkAccentColorPink,
+            highlightColor: kLightAccentColorPink,
+            scaffoldBackgroundColor: kPrimaryColorGreen,
+          ),
+          initialRoute: LoadingScreen.id,
+          routes: {
+            LoadingScreen.id: (context) => LoadingScreen(),
+            NewChargeScreen.id: (context) => NewChargeScreen(),
+            HomeScreen.id: (context) => HomeScreen(),
+          }),
+    );
   }
 }
