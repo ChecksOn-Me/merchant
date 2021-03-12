@@ -18,6 +18,7 @@ class InputButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: ElevatedButton(
+        autofocus: true,
         onPressed: onPressed,
         child: Text(
           text,

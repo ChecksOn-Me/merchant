@@ -6,6 +6,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../components/number_button.dart';
 import '../screens/home_screen.dart';
+// import 'package:provider/provider.dart';
+// import '../models/charge_data.dart';
 
 class NewChargeScreen extends StatefulWidget {
   static const String id = 'new_charge';

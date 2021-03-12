@@ -1,7 +1,5 @@
-import 'package:checksonme_merchant/services/login_register.dart';
 import 'package:checksonme_merchant/utilities/constants.dart';
 import 'package:flutter/material.dart';
-import '../components/input_button.dart';
 
 class LoadingScreen extends StatefulWidget {
   static const String id = 'loading';
@@ -11,16 +9,6 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
-  String email;
-  String password;
-//TODO #3: Can we do conditional rendering of login? OR auto redirect
-//TODO # 5: Have 'please wait' message change based on status
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,48 +34,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
                 'Please wait... pouring in progress',
                 textAlign: TextAlign.center,
                 style: kTextStyleLightPink,
-              ),
-              Container(
-                padding: EdgeInsets.all(20.0),
-                child: TextField(
-                  textAlign: TextAlign.center,
-                  style: kTextStyleDark,
-                  decoration: kTextFieldInputDecoration.copyWith(
-                    hintText: 'email',
-                    icon:
-                        Icon(Icons.login_rounded, color: kLightAccentColorPink),
-                  ),
-                  onChanged: (value) {
-                    email = value;
-                  },
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.all(20.0),
-                child: TextField(
-                  obscureText: true,
-                  textAlign: TextAlign.center,
-                  style: kTextStyleDark,
-                  decoration: kTextFieldInputDecoration.copyWith(
-                    hintText: 'password',
-                    icon:
-                        Icon(Icons.lock_rounded, color: kLightAccentColorPink),
-                  ),
-                  onChanged: (value) {
-                    password = value;
-                  },
-                ),
-              ),
-              InputButton(
-                text: 'Login or Register',
-                onPressed: () {
-                  final session = LoginOrRegister(
-                    email: email,
-                    password: password,
-                    context: context,
-                  );
-                  session.login();
-                },
               ),
             ],
           ),

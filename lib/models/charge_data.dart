@@ -4,7 +4,11 @@ import 'package:flutter/widgets.dart';
 import './tab.dart';
 
 class ChargeData extends ChangeNotifier {
-  List<Tab> _openTabs = [Tab(name: 'Kali'), Tab(name: 'Ashlee')];
+  // This list will actually be retrieved from Firestore
+  List<Tab> _openTabs = [
+    Tab(name: 'Kali'),
+    Tab(name: 'Ashlee'),
+  ];
 
   UnmodifiableListView<Tab> get openTabs {
     return UnmodifiableListView(_openTabs);
@@ -14,12 +18,29 @@ class ChargeData extends ChangeNotifier {
     return _openTabs.length;
   }
 
+  //named tabs are retrieved from Firestore, sent by customer
   void addTab(Tab newTab) {
     _openTabs.add(newTab);
     notifyListeners();
   }
 
-  void updateTab(Tab tab) {
+  //guest tabs are temporary tabs opened to charge
+  void addGuest() {
+    _openTabs.add(Tab(name: 'Guest'));
+    notifyListeners();
+  }
+
+  //user can enter any string to track a guest tab
+  void updateName(Tab tab, String newName) {
+    tab.editName(newName);
+  }
+
+  void updateCharged(Tab tab) {
+    tab.toggleCharged();
+    notifyListeners();
+  }
+
+  void updatePaid(Tab tab) {
     tab.togglePaid();
     notifyListeners();
   }

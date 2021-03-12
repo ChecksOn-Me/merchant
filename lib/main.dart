@@ -1,11 +1,14 @@
-import 'package:checksonme_merchant/screens/loading_screen.dart';
 import 'package:checksonme_merchant/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'screens/new_charge.dart';
 import 'screens/home_screen.dart';
 import 'package:provider/provider.dart';
+import './services/authentication.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import './models/charge_data.dart';
+import './screens/login_screen.dart';
+import './utilities/authenticate.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,8 +19,19 @@ Future main() async {
 class ChecksonMeMerchant extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => ChargeData(),
+    return MultiProvider(
+      providers: [
+        Provider<AuthenticationProvider>(
+          create: (context) => AuthenticationProvider(FirebaseAuth.instance),
+        ),
+        StreamProvider(
+          create: (context) => context.read<AuthenticationProvider>().authState,
+          initialData: context.read<AuthenticationProvider>().authState,
+        ),
+        Provider<ChargeData>(
+          create: (context) => ChargeData(),
+        )
+      ],
       child: MaterialApp(
           title: 'ChecksOn.Me - For Merchants',
           theme: ThemeData(
@@ -28,9 +42,10 @@ class ChecksonMeMerchant extends StatelessWidget {
             highlightColor: kLightAccentColorPink,
             scaffoldBackgroundColor: kPrimaryColorGreen,
           ),
-          initialRoute: LoadingScreen.id,
+          initialRoute: Authenticate.id,
           routes: {
-            LoadingScreen.id: (context) => LoadingScreen(),
+            Authenticate.id: (context) => Authenticate(),
+            LoginScreen.id: (context) => LoginScreen(),
             NewChargeScreen.id: (context) => NewChargeScreen(),
             HomeScreen.id: (context) => HomeScreen(),
           }),
