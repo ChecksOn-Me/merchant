@@ -1,7 +1,9 @@
+import 'package:checksonme_merchant/screens/new_charge.dart';
 import 'package:checksonme_merchant/services/login_register.dart';
 import 'package:checksonme_merchant/utilities/constants.dart';
 import 'package:flutter/material.dart';
 import '../components/input_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'loading';
@@ -11,12 +13,20 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _auth = FirebaseAuth.instance;
   String email;
   String password;
+
+  void loginCheck() {
+    _auth.authStateChanges().listen((User user) {
+      if (user != null) Navigator.pushNamed(context, NewChargeScreen.id);
+    });
+  }
 
   @override
   void initState() {
     super.initState();
+    loginCheck();
   }
 
   @override
