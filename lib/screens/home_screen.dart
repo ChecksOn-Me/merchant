@@ -1,6 +1,7 @@
 import 'package:checksonme_merchant/screens/new_charge.dart';
 import 'package:flutter/material.dart';
 import '../utilities/constants.dart';
+import 'home_subscreens/settings_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home';
@@ -10,25 +11,17 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 2;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static const List<Widget> _widgetOptions = <Widget>[
+  List<Widget> _widgetOptions = <Widget>[
     Text(
       'Some kind of home screen',
-      style: optionStyle,
     ),
     Text(
       'Some kind of reports screen',
-      style: optionStyle,
     ),
     Text(
       'Some kind of open tabs screen',
-      style: optionStyle,
     ),
-    Text(
-      'Some kind of settings screen',
-      style: optionStyle,
-    ),
+    SettingsScreen(),
   ];
 
   void _onItemTapped(int index) {
