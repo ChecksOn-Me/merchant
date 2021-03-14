@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../loading_screen.dart';
+import '../login_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   final _auth = FirebaseAuth.instance;
@@ -15,7 +15,7 @@ class SettingsScreen extends StatelessWidget {
               _auth.signOut();
               Navigator.popUntil(
                 context,
-                ModalRoute.withName(LoadingScreen.id),
+                ModalRoute.withName(LoginScreen.id),
               );
             },
           ),

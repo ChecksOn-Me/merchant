@@ -1,9 +1,9 @@
 import 'package:checksonme_merchant/components/input_button.dart';
-import 'package:checksonme_merchant/screens/loading_screen.dart';
+import 'package:checksonme_merchant/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import '../utilities/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import '../components/number_button.dart';
 import '../screens/home_screen.dart';
 // import 'package:provider/provider.dart';
@@ -15,10 +15,10 @@ class NewChargeScreen extends StatefulWidget {
   @override
   _NewChargeScreenState createState() => _NewChargeScreenState();
 }
-//TODO: #6 Figure out a way to limit input to two decimals
+//TODO: #1 Figure out a way to limit input to two decimals
 
 class _NewChargeScreenState extends State<NewChargeScreen> {
-  final _firestore = FirebaseFirestore.instance;
+  // final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
 
   User loggedInUser;
@@ -30,7 +30,7 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
       loggedInUser = user;
       print(loggedInUser.email);
     } else {
-      Navigator.pushNamed(context, LoadingScreen.id);
+      Navigator.pushNamed(context, LoginScreen.id);
     }
   }
 
