@@ -192,7 +192,9 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
                   NumberButton(
                     number: '0',
                     onPressed: () {
-                      updateNum('0');
+                      if (_amountEnteredDollars.isNotEmpty) {
+                        updateNum('0');
+                      }
                     },
                   ),
                   NumberButton(
