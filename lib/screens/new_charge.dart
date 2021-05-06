@@ -15,14 +15,15 @@ class NewChargeScreen extends StatefulWidget {
   @override
   _NewChargeScreenState createState() => _NewChargeScreenState();
 }
-//TODO: #1 Figure out a way to limit input to two decimals
 
 class _NewChargeScreenState extends State<NewChargeScreen> {
   // final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
 
   User loggedInUser;
-  List<String> _amountEntered = [];
+  bool isDollars = true;
+  List<String> _amountEnteredDollars = [];
+  List<String> _amountEnteredCents = [];
 
   void getCurrentUser() {
     final user = _auth.currentUser;
@@ -35,10 +36,33 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
   }
 
   void updateNum(num) {
-    setState(() {
-      _amountEntered.add(num);
-    });
-    print(_amountEntered);
+    if (num == '<') {
+      if (isDollars) {
+        setState(() {
+          _amountEnteredDollars.removeLast();
+        });
+      } else if (_amountEnteredCents.isEmpty) {
+        isDollars = true;
+        setState(() {
+          _amountEnteredDollars.removeLast();
+        });
+      } else {
+        setState(() {
+          _amountEnteredCents.removeLast();
+        });
+      }
+    } else if (isDollars) {
+      setState(() {
+        _amountEnteredDollars.add(num);
+      });
+    } else {
+      if (_amountEnteredCents.length < 2)
+        setState(() {
+          _amountEnteredCents.add(num);
+        });
+    }
+
+    print(_amountEnteredDollars);
   }
 
   @override
@@ -70,13 +94,13 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
               height: 55.0,
               width: 200.0,
               color: Colors.white,
-              child: _amountEntered.isEmpty
+              child: _amountEnteredDollars.isEmpty
                   ? Text(
                       '\$0.00',
                       style: TextStyle(fontSize: 35.0),
                     )
                   : Text(
-                      '\$${_amountEntered.join('')}',
+                      '\$${_amountEnteredDollars.join('')}.${_amountEnteredCents.join('')}',
                       style: TextStyle(fontSize: 35.0),
                     ),
             ),
@@ -162,7 +186,7 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
                   NumberButton(
                     number: '.',
                     onPressed: () {
-                      updateNum('.');
+                      isDollars = false;
                     },
                   ),
                   NumberButton(
@@ -174,9 +198,7 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
                   NumberButton(
                     number: '<',
                     onPressed: () {
-                      setState(() {
-                        _amountEntered.removeLast();
-                      });
+                      updateNum('<');
                     },
                   ),
                 ],
