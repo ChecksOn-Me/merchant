@@ -6,7 +6,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 import '../components/number_button.dart';
 import '../screens/home_screen.dart';
-// import 'package:provider/provider.dart';
+import '../screens/new_check_screen.dart';
+import '../models/check_data.dart';
 // import '../models/charge_data.dart';
 
 class NewChargeScreen extends StatefulWidget {
@@ -61,8 +62,16 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
           _amountEnteredCents.add(num);
         });
     }
+  }
 
-    print(_amountEnteredDollars);
+  void newCharge() {
+    int dollars = int.parse(_amountEnteredDollars.join(''));
+    int cents = int.parse(_amountEnteredCents.join(''));
+    Navigator.pushNamed(
+      context,
+      NewCheck.id,
+      arguments: CheckData(dollars: dollars, cents: cents),
+    );
   }
 
   @override
@@ -220,7 +229,9 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
                 Expanded(
                   child: InputButton(
                     text: 'New \n Charge',
-                    onPressed: () {},
+                    onPressed: () {
+                      newCharge();
+                    },
                     height: 100.0,
                     width: 125.0,
                   ),

@@ -6,6 +6,7 @@ import 'screens/home_screen.dart';
 import 'package:provider/provider.dart';
 import './models/charge_data.dart';
 import './screens/login_screen.dart';
+import './screens/new_check_screen.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,6 +34,7 @@ class ChecksonMeMerchant extends StatelessWidget {
             LoginScreen.id: (context) => LoginScreen(),
             NewChargeScreen.id: (context) => NewChargeScreen(),
             HomeScreen.id: (context) => HomeScreen(),
+            NewCheck.id: (context) => NewCheck(),
           }),
     );
   }
