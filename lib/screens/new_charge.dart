@@ -6,7 +6,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
 import '../components/number_button.dart';
 import '../screens/home_screen.dart';
-// import 'package:provider/provider.dart';
+import '../screens/new_check_screen.dart';
+import '../models/check_data.dart';
 // import '../models/charge_data.dart';
 
 class NewChargeScreen extends StatefulWidget {
@@ -24,6 +25,8 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
   bool isDollars = true;
   List<String> _amountEnteredDollars = [];
   List<String> _amountEnteredCents = [];
+  String _checkName = 'guest';
+  String _location = 'bar';
 
   void getCurrentUser() {
     final user = _auth.currentUser;
@@ -61,8 +64,26 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
           _amountEnteredCents.add(num);
         });
     }
+  }
 
-    print(_amountEnteredDollars);
+  void newCharge() {
+    int dollars = int.parse(_amountEnteredDollars.join(''));
+    int cents;
+    if (_amountEnteredCents.isEmpty) {
+      cents = 0;
+    } else
+      cents = int.parse(_amountEnteredCents.join(''));
+    Navigator.pushNamed(
+      context,
+      NewCheck.id,
+      arguments: CheckData(
+        name: _checkName,
+        location: _location,
+        dollars: dollars,
+        cents: cents,
+        isPaid: false,
+      ),
+    );
   }
 
   @override
@@ -220,7 +241,9 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
                 Expanded(
                   child: InputButton(
                     text: 'New \n Charge',
-                    onPressed: () {},
+                    onPressed: () {
+                      newCharge();
+                    },
                     height: 100.0,
                     width: 125.0,
                   ),

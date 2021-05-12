@@ -17,12 +17,21 @@ const kTextStyleLightPink = TextStyle(
   color: kLightAccentColorPink,
 );
 
+const kTextStyleDarkPink = TextStyle(
+  color: kDarkAccentColorPink,
+);
+
 const kTextStyleLightGreen = TextStyle(
   color: kLightAccentColorGreen,
 );
 
 const kTextStyleBrightWhite = TextStyle(
   color: Colors.white,
+);
+
+const kTextStyleCheckDetails = TextStyle(
+  color: kDarkGreenTextColor,
+  fontSize: 25.0,
 );
 
 const kTextFieldInputDecoration = InputDecoration(
