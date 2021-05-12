@@ -25,6 +25,8 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
   bool isDollars = true;
   List<String> _amountEnteredDollars = [];
   List<String> _amountEnteredCents = [];
+  String _checkName = 'guest';
+  String _location = 'bar';
 
   void getCurrentUser() {
     final user = _auth.currentUser;
@@ -66,11 +68,21 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
 
   void newCharge() {
     int dollars = int.parse(_amountEnteredDollars.join(''));
-    int cents = int.parse(_amountEnteredCents.join(''));
+    int cents;
+    if (_amountEnteredCents.isEmpty) {
+      cents = 0;
+    } else
+      cents = int.parse(_amountEnteredCents.join(''));
     Navigator.pushNamed(
       context,
       NewCheck.id,
-      arguments: CheckData(dollars: dollars, cents: cents),
+      arguments: CheckData(
+        name: _checkName,
+        location: _location,
+        dollars: dollars,
+        cents: cents,
+        isPaid: false,
+      ),
     );
   }
 
