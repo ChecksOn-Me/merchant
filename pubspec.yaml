@@ -17,17 +17,24 @@ dependencies:
   firebase_core: ^0.7.0
   font_awesome_flutter: ^8.11.0
   provider: ^5.0.0
+  flutter_launcher_icons: ^0.9.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
+flutter_icons:
+  android: true
+  image_path_android: "assets/launchers/playstore.png"
+  ios: true
+  image_path_ios: "assets/launchers/appstore.png"
+
 flutter:
   uses-material-design: true
-
   assets:
     - assets/
     - assets/images/
+    - assets/launchers/
 
   # fonts:
   #   - family: Schyler
