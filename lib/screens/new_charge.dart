@@ -64,6 +64,7 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
           _amountEnteredCents.add(num);
         });
     }
+    //
   }
 
   void newCharge() {
@@ -109,6 +110,7 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
       ),
       body: SingleChildScrollView(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
               alignment: Alignment.center,
@@ -128,6 +130,7 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
             Padding(
               padding: const EdgeInsets.all(kNumPadding),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   NumberButton(
                     number: '1',
@@ -153,6 +156,7 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
             Padding(
               padding: const EdgeInsets.all(kNumPadding),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   NumberButton(
                     number: '4',
@@ -178,6 +182,7 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
             Padding(
               padding: const EdgeInsets.all(kNumPadding),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   NumberButton(
                     number: '7',
@@ -203,6 +208,7 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
             Padding(
               padding: const EdgeInsets.all(kNumPadding),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   NumberButton(
                     number: '.',
