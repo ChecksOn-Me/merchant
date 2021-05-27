@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import '../utilities/constants.dart';
 
-class NumberButton extends StatefulWidget {
-  NumberButton({@required this.number, @required this.onPressed});
+class NumberButtonImage extends StatefulWidget {
+  NumberButtonImage({@required this.number, @required this.onPressed});
 
   final String number;
   final Function onPressed;
 
   @override
-  _NumberButtonState createState() => _NumberButtonState();
+  _NumberButtonImageState createState() => _NumberButtonImageState();
 }
 
-class _NumberButtonState extends State<NumberButton> {
+class _NumberButtonImageState extends State<NumberButtonImage> {
   double _blurOffset = 15.0;
 
   void _tapDown(TapDownDetails details) {

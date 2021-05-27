@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import '../utilities/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:cloud_firestore/cloud_firestore.dart';
-import '../components/number_button.dart';
+// import '../components/number_button.dart';
+// import '../components/number_button_image.dart';
+import '../components/num_button_ani.dart';
 import '../screens/home_screen.dart';
 import '../screens/new_check_screen.dart';
 import '../models/check_data.dart';
@@ -132,19 +134,19 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  NumberButton(
+                  NumberButtonImage(
                     number: '1',
                     onPressed: () {
                       updateNum('1');
                     },
                   ),
-                  NumberButton(
+                  NumberButtonImage(
                     number: '2',
                     onPressed: () {
                       updateNum('2');
                     },
                   ),
-                  NumberButton(
+                  NumberButtonImage(
                     number: '3',
                     onPressed: () {
                       updateNum('3');
@@ -158,19 +160,19 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  NumberButton(
+                  NumberButtonImage(
                     number: '4',
                     onPressed: () {
                       updateNum('4');
                     },
                   ),
-                  NumberButton(
+                  NumberButtonImage(
                     number: '5',
                     onPressed: () {
                       updateNum('5');
                     },
                   ),
-                  NumberButton(
+                  NumberButtonImage(
                     number: '6',
                     onPressed: () {
                       updateNum('6');
@@ -184,19 +186,19 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  NumberButton(
+                  NumberButtonImage(
                     number: '7',
                     onPressed: () {
                       updateNum('7');
                     },
                   ),
-                  NumberButton(
+                  NumberButtonImage(
                     number: '8',
                     onPressed: () {
                       updateNum('8');
                     },
                   ),
-                  NumberButton(
+                  NumberButtonImage(
                     number: '9',
                     onPressed: () {
                       updateNum('9');
@@ -210,13 +212,13 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  NumberButton(
+                  NumberButtonImage(
                     number: '.',
                     onPressed: () {
                       isDollars = false;
                     },
                   ),
-                  NumberButton(
+                  NumberButtonImage(
                     number: '0',
                     onPressed: () {
                       if (_amountEnteredDollars.isNotEmpty) {
@@ -224,7 +226,7 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
                       }
                     },
                   ),
-                  NumberButton(
+                  NumberButtonImage(
                     number: '<',
                     onPressed: () {
                       updateNum('<');
