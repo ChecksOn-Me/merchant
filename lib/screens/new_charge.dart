@@ -3,12 +3,10 @@ import 'package:checksonme_merchant/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import '../utilities/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
 import '../components/number_button.dart';
 import '../screens/home_screen.dart';
 import '../screens/new_check_screen.dart';
 import '../models/check_data.dart';
-// import '../models/charge_data.dart';
 
 class NewChargeScreen extends StatefulWidget {
   static const String id = 'new_charge';
@@ -18,7 +16,6 @@ class NewChargeScreen extends StatefulWidget {
 }
 
 class _NewChargeScreenState extends State<NewChargeScreen> {
-  // final _firestore = FirebaseFirestore.instance;
   final _auth = FirebaseAuth.instance;
 
   User loggedInUser;
@@ -64,7 +61,6 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
           _amountEnteredCents.add(num);
         });
     }
-    //
   }
 
   void newCharge() {
@@ -112,6 +108,36 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(
+              height: 10.0,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                SizedBox(
+                  width: 30.0,
+                ),
+                Container(
+                  height: 30.0,
+                  width: 100.0,
+                  color: kLightAccentColorPink,
+                  child: TextField(
+                    onChanged: (value) => _location = value,
+                    textAlign: TextAlign.center,
+                    textAlignVertical: TextAlignVertical.bottom,
+                    decoration: InputDecoration(
+                      fillColor: kLightAccentColorPink,
+                      hintText: "Location",
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ),
+                Tooltip(
+                  message: "Click location to change, default is 'BAR'",
+                  child: Icon(Icons.help_outline),
+                )
+              ],
+            ),
             Container(
               alignment: Alignment.center,
               height: 55.0,
