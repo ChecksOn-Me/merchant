@@ -1,7 +1,6 @@
 import 'package:checksonme_merchant/components/input_button.dart';
 import 'package:checksonme_merchant/utilities/constants.dart';
 import 'package:flutter/material.dart';
-// import '../utilities/constants.dart';
 import '../models/check_data.dart';
 import '../screens/home_screen.dart';
 import '../components/check_detail.dart';
@@ -22,10 +21,6 @@ class _NewCheckState extends State<NewCheck> {
     final String location = check.location;
     final String dollars = check.dollars.toString();
     final String cents = check.cents == 0 ? '00' : check.cents.toString();
-
-    void editCheck = () {
-      print('editCheck');
-    };
 
     void confirmCharge = () {
       print('confirm');
@@ -60,14 +55,14 @@ class _NewCheckState extends State<NewCheck> {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: TextButton.icon(
-              onPressed: () => editCheck,
+            child: OutlinedButton.icon(
+              onPressed: () => Navigator.pop(context),
               icon: Icon(
                 Icons.edit,
                 color: kDarkAccentColorPink,
               ),
               label: Text(
-                'Edit Check',
+                'Edit Check Details',
                 style: kTextStyleDarkPink,
               ),
             ),
@@ -85,6 +80,16 @@ class _NewCheckState extends State<NewCheck> {
                 children: [
                   CheckDetail(
                     detail: Text(
+                      'Check Amount:',
+                      style: kTextStyleCheckDetails,
+                    ),
+                    value: Text(
+                      '\$$dollars.$cents',
+                      style: kTextStyleCheckDetails,
+                    ),
+                  ),
+                  CheckDetail(
+                    detail: Text(
                       'Check Name:',
                       style: kTextStyleCheckDetails,
                     ),
@@ -100,16 +105,6 @@ class _NewCheckState extends State<NewCheck> {
                     ),
                     value: Text(
                       '$location',
-                      style: kTextStyleCheckDetails,
-                    ),
-                  ),
-                  CheckDetail(
-                    detail: Text(
-                      'Check Amount:',
-                      style: kTextStyleCheckDetails,
-                    ),
-                    value: Text(
-                      '\$$dollars.$cents',
                       style: kTextStyleCheckDetails,
                     ),
                   ),
