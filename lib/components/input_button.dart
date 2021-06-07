@@ -28,6 +28,7 @@ class InputButton extends StatelessWidget {
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(kDarkAccentColorGreen),
           minimumSize: MaterialStateProperty.all(Size(width, height)),
+          elevation: MaterialStateProperty.all(10.0),
         ),
       ),
     );
