@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import '../models/check_data.dart';
 import '../screens/home_screen.dart';
 import '../components/check_detail.dart';
+import 'package:provider/provider.dart';
+import '../models/charge_data.dart';
 
 class NewCheck extends StatefulWidget {
   static const String id = 'new_check';
@@ -19,12 +21,14 @@ class _NewCheckState extends State<NewCheck> {
         ModalRoute.of(context).settings.arguments as CheckData;
     final String name = check.name;
     final String location = check.location;
-    final String dollars = check.dollars.toString();
-    final String cents = check.cents == 0 ? '00' : check.cents.toString();
+    final String dollars = check.dollars;
+    final String cents = check.cents;
 
-    void confirmCharge = () {
-      print('confirm');
-    };
+    void confirmCharge() async {
+      String amount = '$dollars.$cents';
+      Provider.of<ChargeData>(context, listen: false).addGuest(name, amount);
+      print('charge added');
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -124,7 +128,9 @@ class _NewCheckState extends State<NewCheck> {
           ),
           InputButton(
             text: 'Confirm and \n Create Check',
-            onPressed: () => confirmCharge,
+            onPressed: () {
+              confirmCharge();
+            },
             height: 50.0,
           ),
         ],

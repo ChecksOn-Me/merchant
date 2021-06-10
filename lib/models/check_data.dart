@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class CheckData {
   String name;
   String location;
-  int dollars;
-  int cents;
+  String dollars;
+  String cents;
   bool isPaid;
 
   CheckData({

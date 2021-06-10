@@ -64,12 +64,12 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
   }
 
   void newCharge() {
-    int dollars = int.parse(_amountEnteredDollars.join(''));
-    int cents;
+    String dollars = _amountEnteredDollars.join('');
+    String cents;
     if (_amountEnteredCents.isEmpty) {
-      cents = 0;
+      cents = '00';
     } else
-      cents = int.parse(_amountEnteredCents.join(''));
+      cents = _amountEnteredCents.join('');
     Navigator.pushNamed(
       context,
       NewCheck.id,
