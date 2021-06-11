@@ -16,6 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _auth = FirebaseAuth.instance;
   String email;
   String password;
+  String accountID;
 
   void loginCheck() {
     _auth.authStateChanges().listen((User user) {

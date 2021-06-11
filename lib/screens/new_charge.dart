@@ -3,6 +3,7 @@ import 'package:checksonme_merchant/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import '../utilities/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../components/number_button.dart';
 import '../screens/home_screen.dart';
 import '../screens/new_check_screen.dart';
@@ -17,8 +18,10 @@ class NewChargeScreen extends StatefulWidget {
 
 class _NewChargeScreenState extends State<NewChargeScreen> {
   final _auth = FirebaseAuth.instance;
+  final _firestore = FirebaseFirestore.instance;
 
   User loggedInUser;
+  String _storeID;
   bool isDollars = true;
   List<String> _amountEnteredDollars = [];
   List<String> _amountEnteredCents = [];
@@ -28,8 +31,9 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
   void getCurrentUser() {
     final user = _auth.currentUser;
     if (user != null) {
-      loggedInUser = user;
-      print(loggedInUser.email);
+      _firestore.collection("users").doc(user.uid).get().then((value) {
+        _storeID = value.data()["storeID"];
+      });
     } else {
       Navigator.pushNamed(context, LoginScreen.id);
     }
@@ -74,6 +78,7 @@ class _NewChargeScreenState extends State<NewChargeScreen> {
       context,
       NewCheck.id,
       arguments: CheckData(
+        storeID: _storeID,
         name: _checkName,
         location: _location,
         dollars: dollars,
