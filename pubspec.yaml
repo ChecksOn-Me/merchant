@@ -18,7 +18,11 @@ dependencies:
   font_awesome_flutter: ^8.11.0
   provider: ^5.0.0
   flutter_launcher_icons: ^0.9.0
-  animated_widgets: ^1.0.6
+  qr: ^2.0.0
+  qr_flutter: ^4.0.0
+  animated_widgets: ^1.0.6  # Pretty sure this one is not needed anymore, must check later
+  
+
 
 dev_dependencies:
   flutter_test:
@@ -38,15 +42,11 @@ flutter:
     - assets/images/buttons/
     - assets/launchers/
 
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
+  fonts:
+    - family: Merriweather
+      fonts:
+        - asset: fonts/Merriweather-Black.ttf
+        - asset: fonts/Merriweather-BlackItalic.ttf
+    - family: Molle
+      fonts:
+        - asset: fonts/Molle-Italic.ttf

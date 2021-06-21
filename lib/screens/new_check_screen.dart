@@ -5,9 +5,7 @@ import '../models/check_data.dart';
 import '../screens/home_screen.dart';
 import '../components/check_detail.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-// import 'package:provider/provider.dart';
-// import '../models/charge_data.dart';
+import '../screens/receipt_screen.dart';
 
 class NewCheck extends StatefulWidget {
   static const String id = 'new_check';
@@ -17,6 +15,8 @@ class NewCheck extends StatefulWidget {
 }
 
 class _NewCheckState extends State<NewCheck> {
+  final _firestore = FirebaseFirestore.instance;
+
   @override
   Widget build(BuildContext context) {
     final CheckData check =
@@ -29,9 +29,28 @@ class _NewCheckState extends State<NewCheck> {
 
     void confirmCharge() async {
       String amount = '$dollars.$cents';
-      // Provider.of<ChargeData>(context, listen: false).addGuest(name, amount);
+      try {
+        _firestore
+            .collection("stores")
+            .doc(storeID)
+            .collection("openChecks")
+            .add({
+          "name": check.name,
+          "location": check.location,
+          "amount": amount
+        }).then((value) =>
+                value.id != null ? check.checkNumber = value.id : '99999');
+      } catch (e) {
+        print(e);
+      }
       print(storeID);
       print(amount);
+      print(check.checkNumber);
+      Navigator.pushNamed(
+        context,
+        ReceiptScreen.id,
+        arguments: check,
+      );
     }
 
     return Scaffold(

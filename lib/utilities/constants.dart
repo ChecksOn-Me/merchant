@@ -35,6 +35,12 @@ const kTextStyleCheckDetails = TextStyle(
   fontSize: 25.0,
 );
 
+const kTextStyleHandwriting = TextStyle(
+  color: Color(0xFF11158c),
+  fontSize: 50.0,
+  fontFamily: 'Molle',
+);
+
 const kTextFieldInputDecoration = InputDecoration(
   filled: true,
   fillColor: kLightAccentColorPink,

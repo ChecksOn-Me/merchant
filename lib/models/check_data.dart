@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class CheckData {
   String storeID;
+  String checkNumber;
   String name;
   String location;
   String dollars;
@@ -10,6 +11,7 @@ class CheckData {
 
   CheckData({
     @required this.storeID,
+    this.checkNumber,
     this.name = 'guest',
     this.location = 'bar',
     @required this.dollars,
