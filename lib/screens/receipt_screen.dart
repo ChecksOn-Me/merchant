@@ -16,6 +16,8 @@ class ReceiptScreen extends StatelessWidget {
     final String htmlStart = 'http://checkson.me/paycheck/checkNumber=?';
     final String checkNumberSubstring =
         check.checkNumber.substring(check.checkNumber.length - 4);
+    final String checkNumberSubstring10 =
+        check.checkNumber.substring(check.checkNumber.length - 10);
     return Scaffold(
       appBar: AppBar(
         title: Text('ChecksOn.Me'),
@@ -193,7 +195,7 @@ class ReceiptScreen extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'http://ChecksOn.Me/Pn3CxBKzsW',
+                        'http://ChecksOn.Me/$checkNumberSubstring10',
                         style: TextStyle(
                           fontSize: 15.0,
                         ),
