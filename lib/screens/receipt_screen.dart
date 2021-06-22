@@ -137,7 +137,7 @@ class ReceiptScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 100.0,
+                          height: 75.0,
                         ),
                         Transform.rotate(
                           angle: 50.0,
@@ -156,7 +156,7 @@ class ReceiptScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          height: 75.0,
+                          height: 50.0,
                         ),
                         Transform.rotate(
                           angle: 50.0,

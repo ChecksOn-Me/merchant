@@ -30,7 +30,7 @@ class _NewCheckState extends State<NewCheck> {
     void confirmCharge() async {
       String amount = '$dollars.$cents';
       try {
-        _firestore
+        await _firestore
             .collection("stores")
             .doc(storeID)
             .collection("openChecks")

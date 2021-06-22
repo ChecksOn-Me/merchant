@@ -38,7 +38,8 @@ const kTextStyleCheckDetails = TextStyle(
 const kTextStyleHandwriting = TextStyle(
   color: Color(0xFF11158c),
   fontSize: 50.0,
-  fontFamily: 'Molle',
+  fontFamily: 'Kalam',
+  fontWeight: FontWeight.bold,
 );
 
 const kTextFieldInputDecoration = InputDecoration(

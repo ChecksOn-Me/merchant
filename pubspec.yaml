@@ -47,6 +47,8 @@ flutter:
       fonts:
         - asset: fonts/Merriweather-Black.ttf
         - asset: fonts/Merriweather-BlackItalic.ttf
-    - family: Molle
+    - family: Kalam
       fonts:
-        - asset: fonts/Molle-Italic.ttf
+        - asset: fonts/Kalam-Bold.ttf
+        - asset: fonts/Kalam-Light.ttf
+        - asset: fonts/Kalam-Regular.ttf
