@@ -4,6 +4,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 import '../components/receipt_box.dart';
 import '../models/check_data.dart';
 import '../components/stripes_painter.dart';
+import './new_charge.dart';
 
 class ReceiptScreen extends StatelessWidget {
   static String id = 'receipt';
@@ -18,6 +19,25 @@ class ReceiptScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('ChecksOn.Me'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.print),
+            iconSize: 30.0,
+            color: kDarkAccentColorPink,
+            onPressed: () => {print('This is the printer!')},
+          ),
+          SizedBox(
+            width: 30.0,
+          ),
+          IconButton(
+              icon: Icon(Icons.done_outline_sharp),
+              iconSize: 40.0,
+              color: kDarkAccentColorGreen,
+              onPressed: () => {
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, NewChargeScreen.id, (route) => false)
+                  })
+        ],
       ),
       body: Center(
         child: Column(
@@ -122,13 +142,21 @@ class ReceiptScreen extends StatelessWidget {
                         Transform.rotate(
                           angle: 50.0,
                           child: Text(
-                            'Total:    \$${check.dollars}.${check.cents}',
+                            'Total:',
+                            textAlign: TextAlign.left,
+                            style: kTextStyleHandwriting,
+                          ),
+                        ),
+                        Transform.rotate(
+                          angle: 50.0,
+                          child: Text(
+                            '\$${check.dollars}.${check.cents}',
                             textAlign: TextAlign.center,
                             style: kTextStyleHandwriting,
                           ),
                         ),
                         SizedBox(
-                          height: 100.0,
+                          height: 75.0,
                         ),
                         Transform.rotate(
                           angle: 50.0,
@@ -152,9 +180,33 @@ class ReceiptScreen extends StatelessWidget {
                   QrImage(
                     data: '$htmlStart${check.checkNumber}',
                     version: QrVersions.auto,
-                    size: 100,
+                    size: 120,
                     gapless: false,
                   ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        'Scan QR code or visit',
+                        style: TextStyle(
+                          fontSize: 15.0,
+                        ),
+                      ),
+                      Text(
+                        'http://ChecksOn.Me/Pn3CxBKzsW',
+                        style: TextStyle(
+                          fontSize: 15.0,
+                        ),
+                      ),
+                      Text(
+                        check.checkNumber,
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontSize: 20.0,
+                        ),
+                      ),
+                    ],
+                  )
                 ],
               ),
             ),
